@@ -1,12 +1,3 @@
-#!/usr/bin/python3
-"""
-Function that queries the Reddit API and returns a list containing the
-titles of all hot articles for a given subreddit. If no results are
-found for the given subreddit, the function should return None.
-"""
-import requests
-
-
 def recurse(subreddit, hot_list=[], after=None):
     headers = {'User-Agent': 'Mozilla/5.0'}
     params = {'after': after}
@@ -30,4 +21,8 @@ def recurse(subreddit, hot_list=[], after=None):
     if after is not None:
         return recurse(subreddit, hot_list, after)
 
-    return "OK" if hot_list else None
+    if hot_list:  # Check if hot_list is not empty
+        return "OK"
+    else:
+        return None
+
