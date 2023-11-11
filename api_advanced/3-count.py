@@ -6,6 +6,7 @@ import json
 import operator
 import requests
 
+
 def count_words(subreddit, word_list, after=None):
     """get all the keyword count"""
 
@@ -64,14 +65,8 @@ def count_words(subreddit, word_list, after=None):
         sorted_list = sorted(word_list, key=key)
         key = operator.itemgetter("count")
         sorted_list = sorted(sorted_list, key=key, reverse=True)
-
-        # Filter out words with a count of 0 and print the results
+        word_list = sorted_list
         for i in sorted_list:
             if i["count"] > 0:
-                print("{}: {}".format(i["key"], i["count"])
-        
+                print("{}: {}".format(i["key"], i["count"]))
         return
-
-# Example usage:
-count_words("your_subreddit_name", ["you", "unpopular", "downvote", "down", "her", "politics", "vote"])
-
